@@ -10,7 +10,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Template Title"
+      title: "Todo List"
     })
   ],
   output: {
