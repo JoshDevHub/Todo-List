@@ -1,3 +1,6 @@
 // entry point script
 
-document.body.textContent = "hello world";
+import renderHeader from "./components/header";
+
+renderHeader();
+
