@@ -1,5 +1,5 @@
 // class for a single item in a todo list
-class TodoItem {
+export default class TodoItem {
   constructor(title, description, dueDate, priority) {
     this.title = title;
     this.description = description;

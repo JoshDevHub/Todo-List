@@ -1,5 +1,5 @@
 // class for holding a single list of todo items
-class Project {
+export default class Project {
   #todoList;
 
   constructor(name = "Todo List") {
