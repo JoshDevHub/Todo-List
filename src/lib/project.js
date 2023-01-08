@@ -1,3 +1,5 @@
+import pubsub from "../components/pubsub";
+
 // class for holding a single list of todo items
 export default class Project {
   #todoList;
@@ -13,6 +15,7 @@ export default class Project {
 
   addTodo(item) {
     this.#todoList.push(item);
+    pubsub.publish("updateProject");
   }
 
   removeTodo(index) {

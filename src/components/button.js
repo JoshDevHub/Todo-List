@@ -1,4 +1,4 @@
-import { buildElement } from "./dom_helpers";
+import { buildElement } from "../utils/dom_helpers";
 
 export default class Button {
   constructor(textContent, handler) {
