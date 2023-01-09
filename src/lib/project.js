@@ -1,4 +1,5 @@
 import pubsub from "../components/pubsub";
+import createIdWrapper from "../utils/create_uuid";
 
 // class for holding a single list of todo items
 export default class Project {
@@ -14,7 +15,8 @@ export default class Project {
   }
 
   addTodo(item) {
-    this.#todoList.push(item);
+    const newItem = createIdWrapper(item);
+    this.#todoList.push(newItem);
     pubsub.publish("updateProject");
   }
 

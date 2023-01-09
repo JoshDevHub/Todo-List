@@ -1,18 +1,21 @@
 import Project from "./project";
+import createIdWrapper from "../utils/create_uuid";
 
 // class for holding and managing multiple projects
 const projectManager = new class ProjectManager {
   constructor() {
-    this.projects = [new Project()];
+    this.projects = [
+      createIdWrapper(new Project())
+    ];
     this.currentIndex = 0;
   }
 
   currentProject() {
-    return this.projects[this.currentIndex];
+    return this.projects[this.currentIndex].data;
   }
 
-  addProject(name) {
-    const newProject = new Project(name);
+  addProject(project) {
+    const newProject = createIdWrapper(project);
     this.projects.push(newProject);
   }
 
