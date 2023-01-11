@@ -1,4 +1,4 @@
-import pubsub from "../components/pubsub";
+import pubsub from "../utils/pubsub";
 import createIdWrapper from "../utils/create_uuid";
 
 // class for holding a single list of todo items
