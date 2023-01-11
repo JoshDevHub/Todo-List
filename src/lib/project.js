@@ -20,7 +20,7 @@ export default class Project {
     pubsub.publish("updateProject");
   }
 
-  removeTodo(index) {
-    this.#todoList.splice(index, 1);
+  deleteItemWith(id) {
+    this.#todoList = this.#todoList.filter((item) => item.id !== id);
   }
 }
