@@ -17,11 +17,19 @@ import pubsub from "./utils/pubsub";
 renderStaticComponents();
 modal.render();
 
-/* const projectGallery = createProjectComponent(projectManager.currentProject()); */
-/* const projectGallery = renderProjectGallery(projectManager.currentProject()); */
 const renderCurrentProject = () => {
   renderProjectGallery(projectManager.currentProject());
 }
+
+const mainContent = document.querySelector("main");
+mainContent.addEventListener("click", (event) => {
+  if (event.target.getAttribute("data-btn") === "delete") {
+    const currentProject = projectManager.currentProject();
+    currentProject.deleteItemWith(event.target.getAttribute("data-id"));
+    renderCurrentProject();
+  }
+})
+
 renderCurrentProject();
 
 pubsub.subscribe("updateProject", renderCurrentProject);

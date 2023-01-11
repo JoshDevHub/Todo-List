@@ -15,7 +15,7 @@ const createProjectGallery = (todoProject) => {
     const projectContainer = buildElement(buildItemContainer());
 
     project.todoList.forEach((item) => {
-      renderTodoItemCard(item.data, projectContainer);
+      renderTodoItemCard(item.data, item.id, projectContainer);
     })
 
     fragment.appendChild(projectContainer);

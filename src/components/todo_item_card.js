@@ -1,7 +1,8 @@
 import { buildElement } from "../utils/dom_helpers";
 
-const createTodoItemCard = (item, cardContainer) => {
+const createTodoItemCard = (item, id, cardContainer) => {
   const todoItem = item;
+  const domId = id;
 
   const buildCardStructure = () => {
     return {
@@ -15,6 +16,15 @@ const createTodoItemCard = (item, cardContainer) => {
             { tag: "p", text: todoItem.priority },
           ]
         },
+        {
+          children: [
+            {
+              tag: "button",
+              text: "delete",
+              attributes: { "data-btn": "delete", "data-id": domId }
+            }
+          ]
+        }
       ],
     }
   }
@@ -27,6 +37,6 @@ const createTodoItemCard = (item, cardContainer) => {
   return { render }
 }
 
-export default function renderTodoItemCard(item, cardContainer) {
-  createTodoItemCard(item, cardContainer).render();
+export default function renderTodoItemCard(item, id, cardContainer) {
+  createTodoItemCard(item, id, cardContainer).render();
 }
