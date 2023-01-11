@@ -3,29 +3,33 @@
 import "./styles/reset.css";
 import "./styles/app.css";
 
-import Project from "./lib/project";
-import createProjectComponent from "./components/project_gallery";
+import renderStaticComponents from "./static/render_static_components";
 
-import renderStaticComponents from "./static_components/render_static_components";
-import modal from "./components/modal";
 import Button from "./components/button";
-import pubsub from "./components/pubsub";
+import renderProjectGallery from "./components/project_gallery";
+import modal from "./components/modal";
+import renderItemForm from "./components/todo_item_form";
 
-import TodoItemForm from "./components/todo_item_form";
+import projectManager from "./lib/project_manager";
+
+import pubsub from "./utils/pubsub";
 
 renderStaticComponents();
 modal.render();
 
-let currentProject = new Project();
-const projectGallery = createProjectComponent(currentProject);
+/* const projectGallery = createProjectComponent(projectManager.currentProject()); */
+/* const projectGallery = renderProjectGallery(projectManager.currentProject()); */
+const renderCurrentProject = () => {
+  renderProjectGallery(projectManager.currentProject());
+}
+renderCurrentProject();
 
-pubsub.subscribe("updateProject", projectGallery.render);
+pubsub.subscribe("updateProject", renderCurrentProject);
 
 const addTodoHandler = () => {
   modal.toggle();
-  const form = new TodoItemForm(currentProject);
-  form.render(currentProject);
+  renderItemForm(projectManager.currentProject());
 }
 
 new Button("Add Todo", addTodoHandler).render();
-new Button("Check Todo", () => console.log(currentProject)).render();
+new Button("Check Todo", () => console.log(projectManager.currentProject())).render();
