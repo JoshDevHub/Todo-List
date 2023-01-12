@@ -1,5 +1,6 @@
 import Project from "./project";
 import createIdWrapper from "../utils/create_uuid";
+import pubsub from "../utils/pubsub";
 
 // class for holding and managing multiple projects
 const projectManager = new class ProjectManager {
@@ -12,6 +13,11 @@ const projectManager = new class ProjectManager {
 
   currentProject() {
     return this.projects[this.currentIndex].data;
+  }
+
+  setCurrentProject(project) {
+    this.currentIndex = this.projects.findIndex((p) => p.data === project);
+    pubsub.publish("updateCurrentProject");
   }
 
   addProject(project) {
