@@ -9,6 +9,7 @@ import Button from "./components/button";
 import renderProjectGallery from "./components/project_gallery";
 import modal from "./components/modal";
 import renderItemForm from "./components/todo_item_form";
+import renderProjectForm from "./components/project_form";
 
 import projectManager from "./lib/project_manager";
 
@@ -33,11 +34,18 @@ mainContent.addEventListener("click", (event) => {
 renderCurrentProject();
 
 pubsub.subscribe("updateProject", renderCurrentProject);
+pubsub.subscribe("updateCurrentProject", renderCurrentProject);
 
 const addTodoHandler = () => {
   modal.toggle();
   renderItemForm(projectManager.currentProject());
 }
 
+const addProjectForm = () => {
+  modal.toggle();
+  renderProjectForm(projectManager);
+}
+
 new Button("Add Todo", addTodoHandler).render();
 new Button("Check Todo", () => console.log(projectManager.currentProject())).render();
+new Button("Add Project", addProjectForm).render();
