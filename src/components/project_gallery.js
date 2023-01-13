@@ -6,7 +6,12 @@ const createProjectGallery = (todoProject) => {
 
   const buildItemContainer = () => {
     return {
-      attributes: { class: "container" }
+      tag: "section",
+      attributes: { class: "container" },
+      children: {
+        tag: "h1",
+        text: todoProject.name
+      }
     }
   }
 
