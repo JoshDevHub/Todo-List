@@ -21,14 +21,14 @@ const projectManager = new class ProjectManager {
     return this.#projects[this.currentIndex].data;
   }
 
-  setCurrentProject(project) {
-    this.currentIndex = this.projects.findIndex((p) => p.data === project);
-    pubsub.publish("updateCurrentProject");
+  setCurrentProject(id) {
+    this.currentIndex = this.#projects.findIndex((proj) => proj.id === id);
   }
 
   addProject(project) {
     const newProject = createIdWrapper(project);
-    this.projects.push(newProject);
+    this.#projects.push(newProject);
+    this.setCurrentProject(newProject.id);
   }
 
   deleteProjectAt(index) {
