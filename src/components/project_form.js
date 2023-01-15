@@ -24,7 +24,6 @@ const createProjectForm = (projectManager) => {
     event.preventDefault();
     const newProject = projectFromInputs();
     projectManager.addProject(newProject);
-    projectManager.setCurrentProject(newProject);
     modal.toggle();
   }
 
@@ -36,7 +35,7 @@ const createProjectForm = (projectManager) => {
     const button = buildElement({
       tag: "button",
       text: "Add Project",
-      attributes: { type: "button" }
+      attributes: { type: "button", "data-rerender": "" }
     })
     button.addEventListener("click", addProjectHandler);
     form.appendChild(button);
