@@ -14,8 +14,6 @@ import renderProjectMenu from "./components/project_menu";
 
 import projectManager from "./lib/project_manager";
 
-import pubsub from "./utils/pubsub";
-
 renderStaticComponents();
 modal.render();
 
@@ -33,9 +31,6 @@ mainContent.addEventListener("click", (event) => {
 })
 
 renderCurrentProject();
-
-pubsub.subscribe("updateProject", renderCurrentProject);
-/* pubsub.subscribe("updateCurrentProject", renderCurrentProject); */
 
 const addTodoHandler = () => {
   modal.toggle();

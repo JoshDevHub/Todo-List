@@ -1,6 +1,5 @@
 import Project from "./project";
 import createIdWrapper from "../utils/create_uuid";
-import pubsub from "../utils/pubsub";
 
 // class for holding and managing multiple projects
 const projectManager = new class ProjectManager {
