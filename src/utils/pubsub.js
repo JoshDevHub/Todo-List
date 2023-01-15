@@ -9,7 +9,6 @@ class Pubsub {
   }
 
   publish(eventName, data) {
-    console.log("happening");
     this.events[eventName]?.forEach((fn) => fn(data));
   }
 }
