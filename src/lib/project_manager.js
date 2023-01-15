@@ -4,15 +4,21 @@ import pubsub from "../utils/pubsub";
 
 // class for holding and managing multiple projects
 const projectManager = new class ProjectManager {
+  #projects;
+
   constructor() {
-    this.projects = [
+    this.#projects = [
       createIdWrapper(new Project())
     ];
     this.currentIndex = 0;
   }
 
+  get projects() {
+    return [...this.#projects];
+  }
+
   currentProject() {
-    return this.projects[this.currentIndex].data;
+    return this.#projects[this.currentIndex].data;
   }
 
   setCurrentProject(project) {
@@ -28,7 +34,7 @@ const projectManager = new class ProjectManager {
   deleteProjectAt(index) {
     if (index <= 0 || index >= this.projects.length) return;
 
-    this.projects.splice(index, 1);
+    this.#projects.splice(index, 1);
   }
 }()
 
