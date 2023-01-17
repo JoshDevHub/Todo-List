@@ -37,13 +37,7 @@ const addTodoHandler = () => {
   renderItemForm(projectManager.currentProject());
 }
 
-const addProjectForm = () => {
-  modal.toggle();
-  renderProjectForm(projectManager);
-}
-
 const openProjectMenu = () => {
-  modal.toggle();
   renderProjectMenu(projectManager);
 }
 
@@ -51,10 +45,19 @@ document.body.addEventListener("click", (event) => {
   if (event.target.hasAttribute("data-project")) {
     const projectId = event.target.getAttribute("data-project");
     projectManager.setCurrentProject(projectId);
-    modal.toggle();
     renderCurrentProject();
   }
 })
+
+document.body.addEventListener("click", (event) => {
+  if (event.target.getAttribute("data-btn") === "add-project") {
+    modal.toggle();
+    renderProjectForm(projectManager);
+  }
+})
+
+document.querySelector("[data-btn='projects']")
+        .addEventListener("click", openProjectMenu);
 
 document.body.addEventListener("click", (event) => {
   if (event.target.hasAttribute("data-rerender")) {
@@ -64,5 +67,3 @@ document.body.addEventListener("click", (event) => {
 
 new Button("Add Todo", addTodoHandler).render();
 new Button("Check Todo", () => console.log(projectManager.currentProject())).render();
-new Button("Add Project", addProjectForm).render();
-new Button("Change Project", openProjectMenu).render();

@@ -1,9 +1,8 @@
 import { buildElement } from "../utils/dom_helpers";
-import modal from "./modal";
 
 const createProjectMenu = (projectManager) => {
   const projectCollection = projectManager.projects;
-  const entryPoint = document.querySelector(".modal-box");
+  const entryPoint = document.querySelector("main");
 
   const buildLinkListContainer = () => {
     const listContainer = { tag: "ul", children: [] }
@@ -26,6 +25,11 @@ const createProjectMenu = (projectManager) => {
       tag: "section",
       children: [
         { tag: "h2", text: "Select Project" },
+        {
+          tag: "button",
+          text: "New Project",
+          attributes: { "data-btn": "add-project" }
+        },
         buildLinkListContainer()
       ]
     }
