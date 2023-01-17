@@ -7,6 +7,7 @@ const createTodoItemCard = (item, id, cardContainer) => {
   const buildCardStructure = () => {
     return {
       tag: "section",
+      attributes: { class: "todo-card" },
       children: [
         { tag: "h3", text: todoItem.title },
         {

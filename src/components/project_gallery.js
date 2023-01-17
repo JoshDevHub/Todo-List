@@ -9,7 +9,7 @@ const createProjectGallery = (todoProject) => {
       tag: "section",
       attributes: { class: "container" },
       children: {
-        tag: "h1",
+        tag: "h2",
         text: todoProject.name
       }
     }
