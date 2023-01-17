@@ -14,8 +14,8 @@ import renderProjectMenu from "./components/project_menu";
 
 import projectManager from "./lib/project_manager";
 
-renderStaticComponents();
 modal.render();
+renderStaticComponents();
 
 const renderCurrentProject = () => {
   renderProjectGallery(projectManager.currentProject());
