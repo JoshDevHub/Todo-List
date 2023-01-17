@@ -15,8 +15,7 @@ const createTodoItemForm = (proj) => {
     return item;
   }
 
-  const addItemHandler = (event) => {
-    event.preventDefault();
+  const addItemHandler = () => {
     const newItem = todoItemFromInputs();
     project.addTodo(newItem);
     modal.toggle();

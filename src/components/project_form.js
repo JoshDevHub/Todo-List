@@ -20,8 +20,7 @@ const createProjectForm = (projectManager) => {
     })
   }
 
-  const addProjectHandler = (event) => {
-    event.preventDefault();
+  const addProjectHandler = () => {
     const newProject = projectFromInputs();
     projectManager.addProject(newProject);
     modal.toggle();
