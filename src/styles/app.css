@@ -29,11 +29,25 @@ html {
   font-family: sans-serif;
 }
 
+:root {
+  --primary-color: hsl(5, 77%, 55%);
+}
+
 header {
+  background-color: var(--primary-color);
   border-bottom: 1px solid black;
+  color: white;
   margin-bottom: 1rem;
   padding: 1rem;
   text-align: center;
+}
+
+.header__wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 main {
