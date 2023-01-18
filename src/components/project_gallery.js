@@ -15,6 +15,13 @@ const createProjectGallery = (todoProject) => {
     }
   }
 
+  const deleteHandler = (event) => {
+    if (event.target.getAttribute("data-btn") === "delete") {
+      const id = event.target.getAttribute("data-id");
+      project.deleteItemWith(id);
+    }
+  }
+
   const render = () => {
     const fragment = document.createDocumentFragment();
     const projectContainer = buildElement(buildItemContainer());
@@ -22,6 +29,8 @@ const createProjectGallery = (todoProject) => {
     project.todoList.forEach((item) => {
       renderTodoItemCard(item.data, item.id, projectContainer);
     })
+
+    projectContainer.addEventListener("click", deleteHandler);
 
     fragment.appendChild(projectContainer);
 
