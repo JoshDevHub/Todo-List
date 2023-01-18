@@ -22,7 +22,11 @@ const createTodoItemCard = (item, id, cardContainer) => {
             {
               tag: "button",
               text: "delete",
-              attributes: { "data-btn": "delete", "data-id": domId }
+              attributes: {
+                "data-btn": "delete",
+                "data-id": domId,
+                "data-rerender": "currentProject"
+              }
             }
           ]
         }

@@ -10,10 +10,22 @@ const createProjectMenu = (projectManager) => {
       listContainer.children.push(
         {
           tag: "li",
-          children: {
-            tag: "a",
-            text: project.data.name,
-            attributes: { "data-project": project.id } }
+          children: [
+            {
+              tag: "a",
+              text: project.data.name,
+              attributes: { "data-project": project.id }
+            },
+            {
+              tag: "button",
+              text: "Delete",
+              attributes: {
+                "data-btn": "delete",
+                "data-id": project.id,
+                "data-rerender": "projectSelect"
+              }
+            }
+          ]
         }
       )
     })

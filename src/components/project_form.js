@@ -34,7 +34,7 @@ const createProjectForm = (projectManager) => {
     const button = buildElement({
       tag: "button",
       text: "Add Project",
-      attributes: { type: "button", "data-rerender": "" }
+      attributes: { type: "button", "data-rerender": "currentProject" }
     })
     button.addEventListener("click", addProjectHandler);
     form.appendChild(button);

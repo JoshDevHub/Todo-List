@@ -60,8 +60,13 @@ document.querySelector("[data-btn='projects']")
         .addEventListener("click", openProjectMenu);
 
 document.body.addEventListener("click", (event) => {
-  if (event.target.hasAttribute("data-rerender")) {
+  const rerenderAttribute = event.target.getAttribute("data-rerender");
+  if (!rerenderAttribute) return;
+
+  if (rerenderAttribute === "currentProject") {
     renderCurrentProject();
+  } else if (rerenderAttribute === "projectSelect") {
+    openProjectMenu();
   }
 })
 
