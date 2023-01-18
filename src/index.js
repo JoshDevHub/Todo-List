@@ -21,15 +21,6 @@ const renderCurrentProject = () => {
   renderProjectGallery(projectManager.currentProject());
 }
 
-const mainContent = document.querySelector("main");
-mainContent.addEventListener("click", (event) => {
-  if (event.target.getAttribute("data-btn") === "delete") {
-    const currentProject = projectManager.currentProject();
-    currentProject.deleteItemWith(event.target.getAttribute("data-id"));
-    renderCurrentProject();
-  }
-})
-
 renderCurrentProject();
 
 const addTodoHandler = () => {
