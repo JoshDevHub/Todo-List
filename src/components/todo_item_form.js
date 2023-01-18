@@ -45,7 +45,7 @@ const createTodoItemForm = (proj) => {
     const button = buildElement({
       tag: "button",
       text: "Add Item",
-      attributes: { type: "button", "data-rerender": "" }
+      attributes: { type: "button", "data-rerender": "currentProject" }
     })
     button.addEventListener("click", addItemHandler);
     form.appendChild(button);
