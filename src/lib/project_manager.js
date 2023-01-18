@@ -30,10 +30,13 @@ const projectManager = new class ProjectManager {
     this.setCurrentProject(newProject.id);
   }
 
-  deleteProjectAt(index) {
-    if (index <= 0 || index >= this.projects.length) return;
+  deleteProjectWith(id) {
+    this.#projects = this.#projects.filter((project) => project.id !== id);
+    this.#setDefaultProject();
+  }
 
-    this.#projects.splice(index, 1);
+  #setDefaultProject() {
+    this.currentIndex = 0;
   }
 }()
 
