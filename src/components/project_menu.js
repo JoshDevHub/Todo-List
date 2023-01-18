@@ -32,6 +32,13 @@ const createProjectMenu = (projectManager) => {
     return listContainer;
   }
 
+  const deleteHandler = (event) => {
+    if (event.target.getAttribute("data-btn") === "delete") {
+      const id = event.target.getAttribute("data-id");
+      projectManager.deleteProjectWith(id);
+    }
+  }
+
   const buildLinkSection = () => {
     const sectionContainer = {
       tag: "section",
@@ -52,6 +59,7 @@ const createProjectMenu = (projectManager) => {
     entryPoint.replaceChildren();
 
     const section = buildLinkSection();
+    section.addEventListener("click", deleteHandler);
 
     const fragment = document.createDocumentFragment();
     fragment.appendChild(section);
