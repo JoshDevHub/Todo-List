@@ -18,6 +18,10 @@ const createProjectMenu = (projectManager) => {
               attributes: { "data-project": project.id }
             },
             {
+              tag: "p",
+              text: displayTaskCountFor(project.data),
+            },
+            {
               tag: "button",
               text: "Delete",
               attributes: {
@@ -31,6 +35,12 @@ const createProjectMenu = (projectManager) => {
       )
     })
     return listContainer;
+  }
+
+  const displayTaskCountFor = (project) => {
+    const taskCount = project.size;
+    const taskNoun = taskCount === 1 ? "task" : "tasks";
+    return `${taskCount} ${taskNoun}`;
   }
 
   const deleteHandler = (event) => {
