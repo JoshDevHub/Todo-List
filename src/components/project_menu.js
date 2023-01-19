@@ -10,6 +10,7 @@ const createProjectMenu = (projectManager) => {
       listContainer.children.push(
         {
           tag: "li",
+          attributes: { class: "project" },
           children: [
             {
               tag: "a",
