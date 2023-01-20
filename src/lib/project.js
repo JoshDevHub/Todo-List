@@ -22,6 +22,10 @@ export default class Project {
     this.#todoList.push(newItem);
   }
 
+  findBy(id) {
+    return this.#todoList.find((todo) => todo.id === id).data;
+  }
+
   deleteItemWith(id) {
     this.#todoList = this.#todoList.filter((item) => item.id !== id);
   }

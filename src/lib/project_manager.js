@@ -24,6 +24,10 @@ const projectManager = new class ProjectManager {
     return this.#projects[this.currentIndex].data;
   }
 
+  findItemInCurrentProject(id) {
+    return this.currentProject().findBy(id);
+  }
+
   setCurrentProject(id) {
     this.currentIndex = this.#projects.findIndex((proj) => proj.id === id);
   }
