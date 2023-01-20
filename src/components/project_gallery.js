@@ -8,10 +8,14 @@ const createProjectGallery = (todoProject) => {
     return {
       tag: "section",
       attributes: { class: "container" },
-      children: {
-        tag: "h2",
-        text: todoProject.name
-      }
+      children: [
+        { tag: "h2", text: todoProject.name },
+        {
+          tag: "button",
+          text: "Add Todo Item",
+          attributes: { "data-btn": "add-todo" }
+        }
+      ]
     }
   }
 

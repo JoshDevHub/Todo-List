@@ -5,7 +5,6 @@ import "./styles/app.css";
 
 import renderStaticComponents from "./static/render_static_components";
 
-import Button from "./components/button";
 import renderProjectGallery from "./components/project_gallery";
 import modal from "./components/modal";
 import renderItemForm from "./components/todo_item_form";
@@ -24,10 +23,14 @@ const renderCurrentProject = () => {
 
 renderCurrentProject();
 
-const addTodoHandler = () => {
-  modal.toggle();
-  renderItemForm(projectManager.currentProject());
+const addTodoHandler = (event) => {
+  if (event.target.getAttribute("data-btn") === "add-todo") {
+    modal.toggle();
+    renderItemForm(projectManager.currentProject());
+  }
 }
+
+document.body.addEventListener("click", addTodoHandler);
 
 const openProjectMenu = () => {
   renderProjectMenu(projectManager);
@@ -69,6 +72,3 @@ document.body.addEventListener("click", (event) => {
     openProjectMenu();
   }
 })
-
-new Button("Add Todo", addTodoHandler).render();
-new Button("Check Todo", () => console.log(projectManager.currentProject())).render();
