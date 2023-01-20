@@ -2,26 +2,10 @@ import { buildElement } from "../utils/dom_helpers";
 import modal from "./modal";
 import TodoItem from "../lib/todo_item";
 
-const createTodoItemForm = (proj) => {
-  const project = proj;
+const createTodoForm = (todoItem) => {
   const entryPoint = document.querySelector(".modal-box");
 
-  const todoItemFromInputs = () => {
-    const item = new TodoItem();
-    const props = Object.keys(item);
-    props.forEach((prop) => {
-      item[prop] = document.getElementById(prop).value;
-    })
-    return item;
-  }
-
-  const addItemHandler = () => {
-    const newItem = todoItemFromInputs();
-    project.addTodo(newItem);
-    modal.toggle();
-  }
-
-  const buildForm = () => {
+  const createFormElement = () => {
     return buildElement({
       tag: "form",
       children: [
@@ -37,27 +21,69 @@ const createTodoItemForm = (proj) => {
     })
   }
 
+  const fillInItemValues = () => {
+    for (const [prop, value] of Object.entries(todoItem)) {
+      const inputElement = document.getElementById(prop);
+      inputElement.value = value ?? "";
+    }
+  }
+
   const render = () => {
     entryPoint.replaceChildren();
 
-    const form = buildForm();
-
-    const button = buildElement({
-      tag: "button",
-      text: "Add Item",
-      attributes: { type: "button", "data-rerender": "currentProject" }
-    })
-    button.addEventListener("click", addItemHandler);
-    form.appendChild(button);
-
+    const form = createFormElement();
     const fragment = document.createDocumentFragment();
     fragment.appendChild(form);
     entryPoint.appendChild(fragment);
+
+    fillInItemValues();
   }
 
   return { render };
 }
 
-export default function renderItemForm(parentProject) {
-  createTodoItemForm(parentProject).render();
+const renderNewItemForm = (parentProject) => {
+  const newItem = new TodoItem();
+  createTodoForm(newItem).render();
+  const form = document.querySelector("form");
+
+  const addItemHandler = () => {
+    const props = Object.keys(newItem);
+    props.forEach((prop) => {
+      newItem[prop] = document.getElementById(prop).value;
+    })
+    parentProject.addTodo(newItem);
+    modal.toggle();
+  }
+
+  const button = buildElement({
+    tag: "button",
+    text: "Add Item",
+    attributes: { type: "button", "data-rerender": "currentProject" }
+  })
+  button.addEventListener("click", addItemHandler);
+  form.appendChild(button);
 }
+
+const renderEditItemForm = (item) => {
+  createTodoForm(item).render();
+  const form = document.querySelector("form");
+
+  const editItemHandler = () => {
+    const props = Object.keys(item);
+    props.forEach((prop) => {
+      item[prop] = document.getElementById(prop).value;
+    })
+    modal.toggle();
+  }
+
+  const button = buildElement({
+    tag: "button",
+    text: "Edit Item",
+    attributes: { type: "button", "data-rerender": "currentProject" }
+  })
+  button.addEventListener("click", editItemHandler);
+  form.appendChild(button);
+}
+
+export { renderNewItemForm, renderEditItemForm };
