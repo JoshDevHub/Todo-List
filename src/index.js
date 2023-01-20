@@ -7,7 +7,7 @@ import renderStaticComponents from "./static/render_static_components";
 
 import renderProjectGallery from "./components/project_gallery";
 import modal from "./components/modal";
-import renderItemForm from "./components/todo_item_form";
+import { renderNewItemForm, renderEditItemForm } from "./components/todo_item_form";
 import { renderNewProjectForm, renderEditProjectForm } from "./components/project_form";
 import renderProjectMenu from "./components/project_menu";
 
@@ -26,9 +26,21 @@ renderCurrentProject();
 const addTodoHandler = (event) => {
   if (event.target.getAttribute("data-btn") === "add-todo") {
     modal.toggle();
-    renderItemForm(projectManager.currentProject());
+    renderNewItemForm(projectManager.currentProject());
   }
 }
+
+const editTodoHandler = (event) => {
+  if (event.target.getAttribute("data-btn") === "edit-todo") {
+    const todoId = event.target.getAttribute("data-id");
+    modal.toggle();
+    renderEditItemForm(
+      projectManager.findItemInCurrentProject(todoId)
+    )
+  }
+}
+
+document.body.addEventListener("click", editTodoHandler);
 
 document.body.addEventListener("click", addTodoHandler);
 
