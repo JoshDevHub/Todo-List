@@ -66,8 +66,8 @@ const createProjectMenu = (projectManager) => {
         { tag: "h2", text: "Select Project" },
         {
           tag: "button",
-          text: "New Project",
-          attributes: { "data-btn": "add-project" }
+          text: "New Project +",
+          attributes: { "data-btn": "add-project", class: "btn btn--primary" }
         },
         buildLinkListContainer()
       ]
