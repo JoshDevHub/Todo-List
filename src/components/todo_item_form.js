@@ -16,7 +16,16 @@ const createTodoForm = (todoItem) => {
         { tag: "label", text: "Due Date", attributes: { for: "dueDate" } },
         { tag: "input", attributes: { type: "date", id: "dueDate", name: "dueDate" } },
         { tag: "label", text: "Priority", attributes: { for: "priority" } },
-        { tag: "input", attributes: { type: "select", id: "priority", name: "priority" } },
+        {
+          tag: "select",
+          attributes: {
+            id: "priority",
+            name: "priority"
+          },
+          children: todoItem.listPriorityOptions().map((priority) => {
+            return { tag: "option", text: priority, attributes: { value: priority } }
+          }),
+        },
       ]
     })
   }
