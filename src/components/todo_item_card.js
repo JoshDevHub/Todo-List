@@ -21,6 +21,15 @@ const createTodoItemCard = (item, id, cardContainer) => {
           children: [
             {
               tag: "button",
+              text: "Edit",
+              attributes: {
+                "data-btn": "edit-todo",
+                "data-id": domId,
+                "data-rerender": "currentProject"
+              }
+            },
+            {
+              tag: "button",
               text: "delete",
               attributes: {
                 "data-btn": "delete",
