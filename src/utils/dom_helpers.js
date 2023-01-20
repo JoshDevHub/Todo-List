@@ -25,7 +25,6 @@ const buildElement = (opts) => {
         toArray(value).map((child) => {
           if (isSVG(child)) {
             element.insertAdjacentHTML("beforeend", child.data)
-            /* element.innerHTML = child.data; */
           } else {
             const childEl = buildElement(child);
             element.appendChild(childEl);

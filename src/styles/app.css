@@ -50,6 +50,22 @@ header {
   max-width: 1200px;
 }
 
+.header__actions {
+  align-items: center;
+  display: flex;
+  font-weight: bold;
+  gap: 0.5rem;
+}
+
+.header__actions:hover {
+  cursor: pointer;
+}
+
+header svg {
+  height: 2rem;
+  width: 2rem;
+}
+
 main {
   text-align: center;
 }

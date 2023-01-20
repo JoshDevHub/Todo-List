@@ -1,4 +1,5 @@
 import { buildElement } from "../utils/dom_helpers";
+import menuIcon from "../icons/menu.svg";
 
 const headerContent = {
   tag: "header",
@@ -13,9 +14,10 @@ const headerContent = {
           ]
         },
         {
-          attributes: { class: "header__actions" },
+          attributes: { class: "header__actions", "data-btn": "projects" },
           children: [
-            { tag: "button", text: "Projects", attributes: { "data-btn": "projects" } },
+            { tag: "p", text: "Projects", },
+            { tag: "svg", data: menuIcon },
           ]
         }
       ]
