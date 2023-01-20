@@ -23,6 +23,15 @@ const createProjectMenu = (projectManager) => {
             },
             {
               tag: "button",
+              text: "Edit",
+              attributes: {
+                "data-btn": "edit-project",
+                "data-id": project.id,
+                "data-toggle": "modal",
+              }
+            },
+            {
+              tag: "button",
               text: "Delete",
               attributes: {
                 "data-btn": "delete",

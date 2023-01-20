@@ -9,10 +9,11 @@ import Button from "./components/button";
 import renderProjectGallery from "./components/project_gallery";
 import modal from "./components/modal";
 import renderItemForm from "./components/todo_item_form";
-import renderProjectForm from "./components/project_form";
+import { renderNewProjectForm, renderEditProjectForm } from "./components/project_form";
 import renderProjectMenu from "./components/project_menu";
 
 import projectManager from "./lib/project_manager";
+import Project from "./lib/project";
 
 modal.render();
 renderStaticComponents();
@@ -41,9 +42,17 @@ document.body.addEventListener("click", (event) => {
 })
 
 document.body.addEventListener("click", (event) => {
+  if (event.target.getAttribute("data-btn") === "edit-project") {
+    const id = event.target.getAttribute("data-id");
+    modal.toggle();
+    renderEditProjectForm(projectManager.findBy(id));
+  }
+})
+
+document.body.addEventListener("click", (event) => {
   if (event.target.getAttribute("data-btn") === "add-project") {
     modal.toggle();
-    renderProjectForm(projectManager);
+    renderNewProjectForm(projectManager, new Project());
   }
 })
 
