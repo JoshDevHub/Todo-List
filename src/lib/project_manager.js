@@ -7,7 +7,7 @@ const projectManager = new class ProjectManager {
 
   constructor() {
     this.#projects = [
-      createIdWrapper(new Project())
+      createIdWrapper(new Project("Todo List"))
     ];
     this.currentIndex = 0;
   }

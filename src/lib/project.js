@@ -4,7 +4,7 @@ import createIdWrapper from "../utils/create_uuid";
 export default class Project {
   #todoList;
 
-  constructor(name = "Todo List") {
+  constructor(name) {
     this.name = name;
     this.#todoList = [];
   }
