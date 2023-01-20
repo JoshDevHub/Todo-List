@@ -1,44 +1,31 @@
 import { buildElement } from "../utils/dom_helpers";
 import modal from "./modal";
-import Project from "../lib/project";
 
-const createProjectForm = (projectManager) => {
+const createProjectForm = (project) => {
   const entryPoint = document.querySelector(".modal-box");
 
-  const projectFromInputs = () => {
-    const projectName = document.getElementById("name").value;
-    return new Project(projectName);
-  }
-
-  const buildForm = () => {
+  const createFormElement = () => {
     return buildElement({
       tag: "form",
       children: [
         { tag: "label", text: "name", attributes: { for: "name" } },
-        { tag: "input", attributes: { type: "text", id: "name", name: "name" } },
+        {
+          tag: "input",
+          attributes: {
+            type: "text",
+            id: "name",
+            name: "name",
+            value: project.name ?? "",
+          }
+        },
       ]
     })
-  }
-
-  const addProjectHandler = () => {
-    const newProject = projectFromInputs();
-    projectManager.addProject(newProject);
-    modal.toggle();
   }
 
   const render = () => {
     entryPoint.replaceChildren();
 
-    const form = buildForm();
-
-    const button = buildElement({
-      tag: "button",
-      text: "Add Project",
-      attributes: { type: "button", "data-rerender": "currentProject" }
-    })
-    button.addEventListener("click", addProjectHandler);
-    form.appendChild(button);
-
+    const form = createFormElement();
     const fragment = document.createDocumentFragment();
     fragment.appendChild(form);
     entryPoint.appendChild(fragment);
@@ -47,6 +34,47 @@ const createProjectForm = (projectManager) => {
   return { render };
 }
 
-export default function renderProjectForm(projectManager) {
-  createProjectForm(projectManager).render();
+const renderNewProjectForm = (projectManager, project) => {
+  createProjectForm(project).render();
+
+  const form = document.querySelector("form");
+
+  const addProjectHandler = () => {
+    const projectName = document.getElementById("name").value;
+    project.name = projectName;
+    projectManager.addProject(project);
+    modal.toggle();
+  }
+
+  const button = buildElement({
+    tag: "button",
+    text: "Add Project",
+    attributes: { type: "button", "data-rerender": "currentProject" }
+  })
+  button.addEventListener("click", addProjectHandler);
+
+  form.appendChild(button);
 }
+
+const renderEditProjectForm = (project) => {
+  createProjectForm(project).render();
+
+  const form = document.querySelector("form");
+
+  const editProjectHandler = () => {
+    const newName = document.getElementById("name").value;
+    project.name = newName;
+    modal.toggle();
+  }
+
+  const button = buildElement({
+    tag: "button",
+    text: "Edit Project",
+    attributes: { type: "button", "data-rerender": "projectSelect" }
+  })
+  button.addEventListener("click", editProjectHandler);
+
+  form.appendChild(button);
+}
+
+export { renderNewProjectForm, renderEditProjectForm };
