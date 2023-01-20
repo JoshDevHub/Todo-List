@@ -101,7 +101,7 @@ h2 {
   cursor: pointer;
 }
 
-.primary-btn {
+.btn--primary {
   background-color: var(--primary-color);
   border: 2px solid var(--primary-color);
   border-radius: 8px;
@@ -113,7 +113,7 @@ h2 {
   transition: 200ms;
 }
 
-.primary-btn:hover {
+.btn--primary:hover {
   background-color: white;
   color: var(--primary-color);
 }

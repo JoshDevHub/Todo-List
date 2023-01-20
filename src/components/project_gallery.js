@@ -13,7 +13,7 @@ const createProjectGallery = (todoProject) => {
         {
           tag: "button",
           text: "Add Todo Item +",
-          attributes: { "data-btn": "add-todo", class: "btn primary-btn" }
+          attributes: { "data-btn": "add-todo", class: "btn btn--primary" }
         }
       ]
     }
