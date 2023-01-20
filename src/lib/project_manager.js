@@ -16,6 +16,10 @@ const projectManager = new class ProjectManager {
     return [...this.#projects];
   }
 
+  findBy(id) {
+    return this.#projects.find((project) => project.id === id).data;
+  }
+
   currentProject() {
     return this.#projects[this.currentIndex].data;
   }
