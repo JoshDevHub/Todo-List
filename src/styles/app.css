@@ -31,6 +31,8 @@ html {
 
 :root {
   --primary-color: hsl(5, 77%, 55%);
+  --orange-color:  hsl(35, 82%, 64%);
+  --green-color:   hsl(131, 34%, 58%);
 }
 
 header {
@@ -75,13 +77,24 @@ h2 {
 }
 
 .todo-card {
-  border: 1px solid grey;
   border-radius: 8px;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
               0 4px 6px -4px rgba(0, 0, 0, 0.1);
   margin: 0 auto 2rem;
   max-width: 524px;
   padding: 0.5rem;
+}
+
+.todo-card.low {
+  border: 1px solid var(--green-color);
+}
+
+.todo-card.medium {
+  border: 1px solid var(--orange-color);
+}
+
+.todo-card.high {
+  border: 1px solid var(--primary-color);
 }
 
 .project {

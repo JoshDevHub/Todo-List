@@ -7,14 +7,13 @@ const createTodoItemCard = (item, id, cardContainer) => {
   const buildCardStructure = () => {
     return {
       tag: "section",
-      attributes: { class: "todo-card" },
+      attributes: { class: `todo-card ${todoItem.priority}`, },
       children: [
         { tag: "h3", text: todoItem.title },
         {
           children: [
             { tag: "p", text: todoItem.description },
             { tag: "p", text: todoItem.dueDate },
-            { tag: "p", text: todoItem.priority },
           ]
         },
         {
