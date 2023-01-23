@@ -15,6 +15,11 @@ export default class TodoItem {
     this.priority = priority ?? PRIORITIES[0];
   }
 
+  stringDate() {
+    console.log(this.dueDate);
+    return this.dueDate || "--/--/--";
+  }
+
   listPriorityOptions() {
     return PRIORITIES;
   }
