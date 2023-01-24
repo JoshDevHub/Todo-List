@@ -51,6 +51,23 @@ const createTodoForm = (todoItem) => {
   return { render };
 }
 
+const createCancelButton = (parent) => {
+  const button = buildElement({
+    tag: "button",
+    text: "cancel",
+    attributes: { "data-rerender": "currentProject" },
+    events: {
+      type: "click",
+      handler: (event) => {
+        event.preventDefault();
+        modal.toggle();
+        modal.modalBox.replaceChildren();
+      }
+    }
+  })
+  parent.appendChild(button);
+}
+
 const renderNewItemForm = (parentProject) => {
   const newItem = new TodoItem();
   createTodoForm(newItem).render();
@@ -72,6 +89,7 @@ const renderNewItemForm = (parentProject) => {
   })
   button.addEventListener("click", addItemHandler);
   form.appendChild(button);
+  createCancelButton(form);
 }
 
 const renderEditItemForm = (item) => {
@@ -93,6 +111,7 @@ const renderEditItemForm = (item) => {
   })
   button.addEventListener("click", editItemHandler);
   form.appendChild(button);
+  createCancelButton(form);
 }
 
 export { renderNewItemForm, renderEditItemForm };
