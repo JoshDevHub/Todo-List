@@ -34,6 +34,23 @@ const createProjectForm = (project) => {
   return { render };
 }
 
+const createCancelButton = (parent) => {
+  const button = buildElement({
+    tag: "button",
+    text: "cancel",
+    attributes: { "data-rerender": "projectSelect" },
+    events: {
+      type: "click",
+      handler: (event) => {
+        event.preventDefault();
+        modal.toggle();
+        modal.modalBox.replaceChildren();
+      }
+    }
+  })
+  parent.appendChild(button);
+}
+
 const renderNewProjectForm = (projectManager, project) => {
   createProjectForm(project).render();
 
@@ -54,6 +71,7 @@ const renderNewProjectForm = (projectManager, project) => {
   button.addEventListener("click", addProjectHandler);
 
   form.appendChild(button);
+  createCancelButton(form);
 }
 
 const renderEditProjectForm = (project) => {
@@ -75,6 +93,7 @@ const renderEditProjectForm = (project) => {
   button.addEventListener("click", editProjectHandler);
 
   form.appendChild(button);
+  createCancelButton(form);
 }
 
 export { renderNewProjectForm, renderEditProjectForm };
