@@ -16,7 +16,6 @@ export default class TodoItem {
   }
 
   stringDate() {
-    console.log(this.dueDate);
     return this.dueDate || "--/--/--";
   }
 
