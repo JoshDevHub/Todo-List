@@ -46,7 +46,6 @@ const accordionHandler = (event) => {
 
   const accordionElement = accordionContainer.querySelector(".accordion");
   accordionElement.classList.toggle("active");
-  console.log(accordionElement);
 }
 
 document.body.addEventListener("click", accordionHandler);
