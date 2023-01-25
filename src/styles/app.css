@@ -115,16 +115,6 @@ span.high {
   font-weight: bold;
 }
 
-.accordion {
-  display: none;
-}
-
-.accordion.active {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
 .project {
   align-items: center;
   border: 1px solid grey;

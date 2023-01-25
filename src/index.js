@@ -40,16 +40,6 @@ const editTodoHandler = (event) => {
   }
 }
 
-const accordionHandler = (event) => {
-  const accordionContainer = event.target.closest("[data-toggle='accordion']");
-  if (!accordionContainer) return;
-
-  const accordionElement = accordionContainer.querySelector(".accordion");
-  accordionElement.classList.toggle("active");
-}
-
-document.body.addEventListener("click", accordionHandler);
-
 document.body.addEventListener("click", editTodoHandler);
 
 document.body.addEventListener("click", addTodoHandler);
