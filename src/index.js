@@ -77,7 +77,6 @@ document.querySelector("[data-btn='projects']")
 
 document.body.addEventListener("click", (event) => {
   const rerenderButton = event.target.closest("[data-rerender]");
-  /* const rerenderAttribute = event.target.getAttribute("data-rerender"); */
   if (!rerenderButton) return;
 
   const rerenderAttribute = rerenderButton.getAttribute("data-rerender");
