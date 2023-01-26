@@ -32,6 +32,7 @@ const createProjectMenu = (projectManager) => {
                   attributes: {
                     "data-btn": "edit-project",
                     "data-id": project.id,
+                    value: project.id,
                     "data-toggle": "modal",
                   },
                   children: { tag: "svg", data: editIcon },
@@ -40,7 +41,8 @@ const createProjectMenu = (projectManager) => {
                   tag: "button",
                   attributes: {
                     "data-btn": "delete",
-                    "data-id": project.id,
+                    /* "data-id": project.id, */
+                    value: project.id,
                     "data-rerender": "projectSelect"
                   },
                   children: { tag: "svg", data: deleteIcon },
@@ -62,7 +64,7 @@ const createProjectMenu = (projectManager) => {
 
   const deleteHandler = (event) => {
     if (event.target.getAttribute("data-btn") === "delete") {
-      const id = event.target.getAttribute("data-id");
+      const id = event.target.value;
       projectManager.deleteProjectWith(id);
     }
   }

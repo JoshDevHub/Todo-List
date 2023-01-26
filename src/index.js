@@ -34,7 +34,7 @@ const editTodoHandler = (event) => {
   const editButton = event.target.closest("[data-btn='edit-todo']");
   if (!editButton) return;
 
-  const todoId = event.target.getAttribute("data-id");
+  const todoId = editButton.value;
   modal.toggle();
   renderEditItemForm(
     projectManager.findItemInCurrentProject(todoId)
@@ -51,7 +51,7 @@ const openProjectMenu = () => {
 
 document.body.addEventListener("click", (event) => {
   if (event.target.hasAttribute("data-project")) {
-    const projectId = event.target.getAttribute("data-project");
+    const projectId = event.target.value;
     projectManager.setCurrentProject(projectId);
     renderCurrentProject();
   }
@@ -59,7 +59,7 @@ document.body.addEventListener("click", (event) => {
 
 document.body.addEventListener("click", (event) => {
   if (event.target.getAttribute("data-btn") === "edit-project") {
-    const id = event.target.getAttribute("data-id");
+    const id = event.target.value;
     modal.toggle();
     renderEditProjectForm(projectManager.findBy(id));
   }
@@ -77,6 +77,7 @@ document.querySelector("[data-btn='projects']")
 
 document.body.addEventListener("click", (event) => {
   const rerenderButton = event.target.closest("[data-rerender]");
+  /* const rerenderAttribute = event.target.getAttribute("data-rerender"); */
   if (!rerenderButton) return;
 
   const rerenderAttribute = rerenderButton.getAttribute("data-rerender");

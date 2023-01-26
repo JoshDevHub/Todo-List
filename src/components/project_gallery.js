@@ -21,9 +21,11 @@ const createProjectGallery = (todoProject) => {
 
   const deleteHandler = (event) => {
     const deleteButton = event.target.closest("[data-btn='delete']")
+    console.log(deleteButton);
     if (!deleteButton) return;
 
-    const id = deleteButton.getAttribute("data-id");
+    const id = deleteButton.value;
+    console.log(id);
     project.deleteItemWith(id);
   }
 

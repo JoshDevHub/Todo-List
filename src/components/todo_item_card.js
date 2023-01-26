@@ -39,7 +39,8 @@ const createTodoItemCard = (item, id, cardContainer) => {
               attributes: {
                 class: "todo-card__edit",
                 "data-btn": "edit-todo",
-                "data-id": domId,
+                /* "data-id": domId, */
+                value: domId,
                 "data-rerender": "currentProject"
               },
               children: { tag: "svg", data: editIcon },
@@ -48,7 +49,8 @@ const createTodoItemCard = (item, id, cardContainer) => {
               tag: "button",
               attributes: {
                 "data-btn": "delete",
-                "data-id": domId,
+                /* "data-id": domId, */
+                value: domId,
                 "data-rerender": "currentProject"
               },
               children: { tag: "svg", data: deleteIcon },
