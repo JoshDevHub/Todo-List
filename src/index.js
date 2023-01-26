@@ -31,13 +31,14 @@ const addTodoHandler = (event) => {
 }
 
 const editTodoHandler = (event) => {
-  if (event.target.getAttribute("data-btn") === "edit-todo") {
-    const todoId = event.target.getAttribute("data-id");
-    modal.toggle();
-    renderEditItemForm(
-      projectManager.findItemInCurrentProject(todoId)
-    )
-  }
+  const editButton = event.target.closest("[data-btn='edit-todo']");
+  if (!editButton) return;
+
+  const todoId = event.target.getAttribute("data-id");
+  modal.toggle();
+  renderEditItemForm(
+    projectManager.findItemInCurrentProject(todoId)
+  )
 }
 
 document.body.addEventListener("click", editTodoHandler);
