@@ -153,7 +153,17 @@ h2 {
   justify-content: space-around;
   margin: 0 auto 1rem;
   max-width: 524px;
-  padding: 0.5rem;
+  padding: 1rem;
+}
+
+.project__actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.project__actions svg {
+  height: 16px;
+  width: 16px;
 }
 
 .btn:hover {

@@ -1,5 +1,8 @@
 import { buildElement } from "../utils/dom_helpers";
 
+import editIcon from "../icons/pencil-outline.svg";
+import deleteIcon from "../icons/delete-outline.svg";
+
 const createProjectMenu = (projectManager) => {
   const projectCollection = projectManager.projects;
   const entryPoint = document.querySelector("main");
@@ -22,23 +25,28 @@ const createProjectMenu = (projectManager) => {
               text: displayTaskCountFor(project.data),
             },
             {
-              tag: "button",
-              text: "Edit",
-              attributes: {
-                "data-btn": "edit-project",
-                "data-id": project.id,
-                "data-toggle": "modal",
-              }
+              attributes: { class: "project__actions" },
+              children: [
+                {
+                  tag: "button",
+                  attributes: {
+                    "data-btn": "edit-project",
+                    "data-id": project.id,
+                    "data-toggle": "modal",
+                  },
+                  children: { tag: "svg", data: editIcon },
+                },
+                {
+                  tag: "button",
+                  attributes: {
+                    "data-btn": "delete",
+                    "data-id": project.id,
+                    "data-rerender": "projectSelect"
+                  },
+                  children: { tag: "svg", data: deleteIcon },
+                }
+              ]
             },
-            {
-              tag: "button",
-              text: "Delete",
-              attributes: {
-                "data-btn": "delete",
-                "data-id": project.id,
-                "data-rerender": "projectSelect"
-              }
-            }
           ]
         }
       )
