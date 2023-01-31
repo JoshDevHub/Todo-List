@@ -16,9 +16,8 @@ const createProjectMenu = (projectManager) => {
           attributes: { class: "project", "data-project": project.id },
           children: [
             {
-              tag: "a",
+              tag: "h3",
               text: project.data.name,
-              /* attributes: { "data-project": project.id } */
             },
             {
               tag: "p",
@@ -30,8 +29,8 @@ const createProjectMenu = (projectManager) => {
                 {
                   tag: "button",
                   attributes: {
+                    class: "btn",
                     "data-btn": "edit-project",
-                    /* "data-id": project.id, */
                     value: project.id,
                     "data-toggle": "modal",
                   },
@@ -40,8 +39,8 @@ const createProjectMenu = (projectManager) => {
                 {
                   tag: "button",
                   attributes: {
+                    class: "btn",
                     "data-btn": "delete",
-                    /* "data-id": project.id, */
                     value: project.id,
                     "data-rerender": "projectSelect"
                   },
