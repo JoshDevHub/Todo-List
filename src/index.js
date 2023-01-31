@@ -3,8 +3,6 @@
 import "./styles/reset.css";
 import "./styles/app.css";
 
-import renderStaticComponents from "./static/render_static_components";
-
 import renderProjectGallery from "./components/project_gallery";
 import modal from "./components/modal";
 import { renderNewItemForm, renderEditItemForm } from "./components/todo_item_form";
@@ -15,7 +13,6 @@ import projectManager from "./lib/project_manager";
 import Project from "./lib/project";
 
 modal.render();
-renderStaticComponents();
 
 const renderCurrentProject = () => {
   renderProjectGallery(projectManager.currentProject());
