@@ -51,7 +51,7 @@ const openProjectMenu = () => {
 
 document.body.addEventListener("click", (event) => {
   if (event.target.hasAttribute("data-project")) {
-    const projectId = event.target.value;
+    const projectId = event.target.getAttribute("data-project");
     projectManager.setCurrentProject(projectId);
     renderCurrentProject();
   }
