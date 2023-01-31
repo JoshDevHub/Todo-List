@@ -47,19 +47,22 @@ const openProjectMenu = () => {
 }
 
 document.body.addEventListener("click", (event) => {
-  if (event.target.hasAttribute("data-project")) {
-    const projectId = event.target.getAttribute("data-project");
-    projectManager.setCurrentProject(projectId);
-    renderCurrentProject();
-  }
+  const projectCard = event.target.closest("[data-project]");
+  if (!projectCard || event.target.closest("button")) return;
+
+  const projectId = projectCard.getAttribute("data-project");
+  projectManager.setCurrentProject(projectId);
+  renderCurrentProject();
 })
 
 document.body.addEventListener("click", (event) => {
-  if (event.target.getAttribute("data-btn") === "edit-project") {
-    const id = event.target.value;
-    modal.toggle();
-    renderEditProjectForm(projectManager.findBy(id));
-  }
+  const editButton = event.target.closest("[data-btn='edit-project']")
+  if (!editButton) return;
+
+  modal.toggle();
+  renderEditProjectForm(
+    projectManager.findBy(editButton.value)
+  )
 })
 
 document.body.addEventListener("click", (event) => {

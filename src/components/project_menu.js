@@ -13,12 +13,12 @@ const createProjectMenu = (projectManager) => {
       listContainer.children.push(
         {
           tag: "li",
-          attributes: { class: "project" },
+          attributes: { class: "project", "data-project": project.id },
           children: [
             {
               tag: "a",
               text: project.data.name,
-              attributes: { "data-project": project.id }
+              /* attributes: { "data-project": project.id } */
             },
             {
               tag: "p",
@@ -31,7 +31,7 @@ const createProjectMenu = (projectManager) => {
                   tag: "button",
                   attributes: {
                     "data-btn": "edit-project",
-                    "data-id": project.id,
+                    /* "data-id": project.id, */
                     value: project.id,
                     "data-toggle": "modal",
                   },
