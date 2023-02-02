@@ -62,10 +62,11 @@ const createProjectMenu = (projectManager) => {
   }
 
   const deleteHandler = (event) => {
-    if (event.target.getAttribute("data-btn") === "delete") {
-      const id = event.target.value;
-      projectManager.deleteProjectWith(id);
-    }
+    const deleteButton = event.target.closest("[data-btn='delete']");
+    if (!deleteButton) return;
+
+    const id = deleteButton.value;
+    projectManager.deleteProjectWith(id);
   }
 
   const buildLinkSection = () => {
