@@ -1,7 +1,7 @@
-import { buildElement } from "../utils/dom_helpers";
+import { buildElement } from "../../utils/dom_helpers";
 
-import editIcon from "../icons/pencil-outline.svg";
-import deleteIcon from "../icons/delete-outline.svg";
+import editIcon from "../../icons/pencil-outline.svg";
+import deleteIcon from "../../icons/delete-outline.svg";
 
 const createProjectMenu = (projectManager) => {
   const projectCollection = projectManager.projects;
@@ -99,6 +99,6 @@ const createProjectMenu = (projectManager) => {
   return { render }
 }
 
-export default function renderProjectMenu(projectManager) {
+export default function renderProjectList(projectManager) {
   createProjectMenu(projectManager).render();
 }

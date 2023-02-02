@@ -3,14 +3,14 @@
 import "./styles/reset.css";
 import "./styles/app.css";
 
-import renderProjectGallery from "./components/project_gallery";
+import renderProjectGallery from "./components/projects/view";
 import modal from "./components/modal";
-import { renderNewItemForm, renderEditItemForm } from "./components/todo_item_form";
-import { renderNewProjectForm, renderEditProjectForm } from "./components/project_form";
-import renderProjectMenu from "./components/project_menu";
+import { renderNewItemForm, renderEditItemForm } from "./components/todo_items/form";
+import { renderNewProjectForm, renderEditProjectForm } from "./components/projects/form";
+import renderProjectList from "./components/projects/list";
 
-import projectManager from "./lib/project_manager";
-import Project from "./lib/project";
+import projectManager from "./models/project_manager";
+import Project from "./models/project";
 
 modal.render();
 
@@ -43,7 +43,7 @@ document.body.addEventListener("click", editTodoHandler);
 document.body.addEventListener("click", addTodoHandler);
 
 const openProjectMenu = () => {
-  renderProjectMenu(projectManager);
+  renderProjectList(projectManager);
 }
 
 document.body.addEventListener("click", (event) => {

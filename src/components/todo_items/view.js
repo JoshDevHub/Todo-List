@@ -1,8 +1,8 @@
-import { buildElement } from "../utils/dom_helpers";
+import { buildElement } from "../../utils/dom_helpers";
 
-import clockIcon from "../icons/clock-outline.svg";
-import editIcon from "../icons/pencil-outline.svg";
-import deleteIcon from "../icons/delete-outline.svg";
+import clockIcon from "../../icons/clock-outline.svg";
+import editIcon from "../../icons/pencil-outline.svg";
+import deleteIcon from "../../icons/delete-outline.svg";
 
 const createTodoItemCard = (item, id, cardContainer) => {
   const todoItem = item;
@@ -39,7 +39,6 @@ const createTodoItemCard = (item, id, cardContainer) => {
               attributes: {
                 class: "todo-card__edit",
                 "data-btn": "edit-todo",
-                /* "data-id": domId, */
                 value: domId,
                 "data-rerender": "currentProject"
               },
@@ -49,7 +48,6 @@ const createTodoItemCard = (item, id, cardContainer) => {
               tag: "button",
               attributes: {
                 "data-btn": "delete",
-                /* "data-id": domId, */
                 value: domId,
                 "data-rerender": "currentProject"
               },
@@ -69,6 +67,6 @@ const createTodoItemCard = (item, id, cardContainer) => {
   return { render }
 }
 
-export default function renderTodoItemCard(item, id, cardContainer) {
+export default function renderTodoItem(item, id, cardContainer) {
   createTodoItemCard(item, id, cardContainer).render();
 }

@@ -1,5 +1,5 @@
-import { buildElement } from "../utils/dom_helpers";
-import modal from "./modal";
+import { buildElement } from "../../utils/dom_helpers";
+import modal from "../modal";
 
 const createProjectForm = (project) => {
   const entryPoint = document.querySelector(".modal-box");

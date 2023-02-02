@@ -1,5 +1,5 @@
-import { buildElement } from "../utils/dom_helpers";
-import renderTodoItemCard from "./todo_item_card";
+import { buildElement } from "../../utils/dom_helpers";
+import renderTodoItem from "../todo_items/view";
 
 const createProjectGallery = (todoProject) => {
   const project = todoProject;
@@ -21,11 +21,9 @@ const createProjectGallery = (todoProject) => {
 
   const deleteHandler = (event) => {
     const deleteButton = event.target.closest("[data-btn='delete']")
-    console.log(deleteButton);
     if (!deleteButton) return;
 
     const id = deleteButton.value;
-    console.log(id);
     project.deleteItemWith(id);
   }
 
@@ -47,7 +45,7 @@ const createProjectGallery = (todoProject) => {
     }
 
     project.todoList.forEach((item) => {
-      renderTodoItemCard(item.data, item.id, projectContainer);
+      renderTodoItem(item.data, item.id, projectContainer);
     })
 
     projectContainer.addEventListener("click", deleteHandler);
@@ -62,6 +60,6 @@ const createProjectGallery = (todoProject) => {
   return { render };
 }
 
-export default function renderProjectGallery(todoProject) {
+export default function renderProject(todoProject) {
   createProjectGallery(todoProject).render();
 }
