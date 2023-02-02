@@ -29,9 +29,22 @@ const createProjectGallery = (todoProject) => {
     project.deleteItemWith(id);
   }
 
+  const showEmptyState = () => {
+    return buildElement(
+      {
+        tag: "p",
+        text: "This list doesn't have any todos yet. Click the button to add one."
+      }
+    )
+  }
+
   const render = () => {
     const fragment = document.createDocumentFragment();
     const projectContainer = buildElement(buildItemContainer());
+
+    if (project.isEmpty()) {
+      projectContainer.appendChild(showEmptyState());
+    }
 
     project.todoList.forEach((item) => {
       renderTodoItemCard(item.data, item.id, projectContainer);

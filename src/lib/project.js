@@ -17,6 +17,10 @@ export default class Project {
     return this.#todoList.length;
   }
 
+  isEmpty() {
+    return this.#todoList.length === 0;
+  }
+
   addTodo(item) {
     const newItem = createIdWrapper(item);
     this.#todoList.push(newItem);

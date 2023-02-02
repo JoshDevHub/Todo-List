@@ -76,6 +76,10 @@ h2 {
   margin-bottom: 0.5rem;
 }
 
+.container p {
+  margin: 0 0.5rem;
+}
+
 .todo-card {
   border-radius: 8px;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
