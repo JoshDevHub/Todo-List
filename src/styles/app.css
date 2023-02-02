@@ -76,8 +76,8 @@ h2 {
   margin-bottom: 0.5rem;
 }
 
-.container p {
-  margin: 0 0.5rem;
+.container {
+  margin: 0 1rem;
 }
 
 .todo-card {

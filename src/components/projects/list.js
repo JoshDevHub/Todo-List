@@ -8,7 +8,7 @@ const createProjectMenu = (projectManager) => {
   const entryPoint = document.querySelector("main");
 
   const buildLinkListContainer = () => {
-    const listContainer = { tag: "ul", children: [] }
+    const listContainer = { tag: "ul", attributes: { class: "container" }, children: [] }
     projectCollection.forEach((project) => {
       listContainer.children.push(
         {
