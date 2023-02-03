@@ -160,10 +160,12 @@ h2 {
   margin: 0 auto 1rem;
   max-width: 524px;
   padding: 1rem;
+  transition: 200ms;
 }
 
 .project:hover {
   cursor: pointer;
+  border: 1px solid black;
 }
 
 .project__actions {
@@ -176,8 +178,14 @@ h2 {
   width: 16px;
 }
 
+.btn {
+  border: none;
+  border-radius: 8px;
+}
+
 .btn:hover {
   cursor: pointer;
+  transition: 200ms;
 }
 
 .btn--primary {
@@ -189,10 +197,33 @@ h2 {
   font-size: 1rem;
   margin-bottom: 1rem;
   padding: 0.5em;
-  transition: 200ms;
 }
 
 .btn--primary:hover {
+  background-color: white;
+  color: var(--primary-color);
+}
+
+.btn--edit {
+  background-color: #1e283b;
+  border: 2px solid #1e283b;
+  color: white;
+  padding: 0 0.5em;
+}
+
+.btn--edit:hover {
+  background-color: white;
+  color: #1e283b;
+}
+
+.btn--delete {
+  background-color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  color: white;
+  padding: 0 0.5em;
+}
+
+.btn--delete:hover {
   background-color: white;
   color: var(--primary-color);
 }
