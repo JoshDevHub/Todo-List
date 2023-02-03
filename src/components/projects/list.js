@@ -1,7 +1,6 @@
 import { buildElement } from "../../utils/dom_helpers";
 
-import editIcon from "../../icons/pencil-outline.svg";
-import deleteIcon from "../../icons/delete-outline.svg";
+import { editIcon, deleteIcon } from "../../icons/manifest";
 
 const createProjectMenu = (projectManager) => {
   const projectCollection = projectManager.projects;

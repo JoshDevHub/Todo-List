@@ -1,8 +1,6 @@
 import { buildElement } from "../../utils/dom_helpers";
 
-import clockIcon from "../../icons/clock-outline.svg";
-import editIcon from "../../icons/pencil-outline.svg";
-import deleteIcon from "../../icons/delete-outline.svg";
+import { clockIcon, editIcon, deleteIcon } from "../../icons/manifest";
 
 const createTodoItemCard = (item, id, cardContainer) => {
   const todoItem = item;
