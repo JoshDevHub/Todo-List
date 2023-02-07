@@ -30,6 +30,10 @@ export default class Project {
     return this.#todoList.find((todo) => todo.id === id).data;
   }
 
+  toggleFinishFor(id) {
+    this.findBy(id).toggleFinishedStatus();
+  }
+
   deleteItemWith(id) {
     this.#todoList = this.#todoList.filter((item) => item.id !== id);
   }
