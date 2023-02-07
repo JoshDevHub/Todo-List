@@ -4,9 +4,17 @@ import renderTodoItem from "../todo_items/view";
 const createProjectGallery = (todoProject) => {
   const project = todoProject;
 
+  const handleFinishToggle = (event) => {
+    if (event.target.hasAttribute("data-toggle-finish")) {
+      const id = event.target.value;
+      project.toggleFinishFor(id);
+    }
+  }
+
   const buildItemContainer = () => {
     return {
       tag: "section",
+      events: { type: "click", handler: handleFinishToggle },
       attributes: { class: "container" },
       children: [
         { tag: "h2", text: todoProject.name },

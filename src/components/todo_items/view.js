@@ -26,6 +26,20 @@ const createTodoItemCard = (item, id, cardContainer) => {
                   { tag: "p", text: todoItem.stringDate() }
                 ]
               },
+              {
+                children: [
+                  { tag: "label", text: "Finished?" },
+                  {
+                    tag: "input",
+                    attributes: {
+                      type: "checkbox",
+                      value: id,
+                      "data-toggle-finish": "",
+                    },
+                    checked: todoItem.isFinished()
+                  },
+                ]
+              }
             ]
           }
         },
