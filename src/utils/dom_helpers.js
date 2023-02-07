@@ -16,6 +16,9 @@ const buildElement = (opts) => {
           element.setAttribute(attr, attrVal);
         }
         break;
+      case "checked":
+        element.checked = value;
+        break;
       case "events":
         toArray(value).map(({ type, handler }) => {
           element.addEventListener(type, handler);
