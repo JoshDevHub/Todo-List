@@ -1,27 +1,27 @@
 import Project from "./project";
-import createIdWrapper from "../utils/create_uuid";
+import Collection from "../utils/collection";
 
 // class for holding and managing multiple projects
 const projectManager = new class ProjectManager {
   #projects;
 
   constructor() {
-    this.#projects = [
-      createIdWrapper(new Project("Todo List"))
-    ];
+    this.#projects = new Collection(
+      new Project("Todo List")
+    );
     this.currentIndex = 0;
   }
 
   get projects() {
-    return [...this.#projects];
+    return this.#projects.collection
   }
 
   findBy(id) {
-    return this.#projects.find((project) => project.id === id).data;
+    return this.#projects.findBy(id);
   }
 
   currentProject() {
-    return this.#projects[this.currentIndex].data;
+    return this.projects[this.currentIndex].data;
   }
 
   findItemInCurrentProject(id) {
@@ -29,17 +29,15 @@ const projectManager = new class ProjectManager {
   }
 
   setCurrentProject(id) {
-    this.currentIndex = this.#projects.findIndex((proj) => proj.id === id);
+    this.currentIndex = this.projects.findIndex((proj) => proj.id === id);
   }
 
   addProject(project) {
-    const newProject = createIdWrapper(project);
-    this.#projects.push(newProject);
-    this.setCurrentProject(newProject.id);
+    this.#projects.add(project);
   }
 
   deleteProjectWith(id) {
-    this.#projects = this.#projects.filter((project) => project.id !== id);
+    this.#projects.deleteItemWith(id);
     this.#setDefaultProject();
   }
 
