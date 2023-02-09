@@ -28,11 +28,16 @@ const createTodoItemCard = (item, id, cardContainer) => {
               },
               {
                 children: [
-                  { tag: "label", text: "Finished?" },
+                  {
+                    tag: "label",
+                    text: "Finished?",
+                    attributes: { for: "finished" },
+                  },
                   {
                     tag: "input",
                     attributes: {
                       type: "checkbox",
+                      id: "finished",
                       value: id,
                       "data-toggle-finish": "",
                     },
