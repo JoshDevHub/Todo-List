@@ -132,19 +132,9 @@ h2 {
   border: 1px solid var(--primary-color);
 }
 
-.todo-card__low {
-  color: var(--green-color);
-  font-weight: bold;
-}
-
-.todo-card__medium {
-  color: var(--orange-color);
-  font-weight: bold;
-}
-
-.todo-card__high {
-  color: var(--primary-color);
-  font-weight: bold;
+.todo-card.finished {
+  background-color: hsl(0, 0%, 90%);
+  border: 1px solid gray;
 }
 
 .project {

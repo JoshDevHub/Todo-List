@@ -8,6 +8,8 @@ const createProjectGallery = (todoProject) => {
     if (event.target.hasAttribute("data-toggle-finish")) {
       const id = event.target.value;
       project.toggleFinishFor(id);
+
+      event.target.closest(".todo-card").classList.toggle("finished");
     }
   }
 

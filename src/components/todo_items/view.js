@@ -7,9 +7,12 @@ const createTodoItemCard = (item, id, cardContainer) => {
   const domId = id;
 
   const buildCardStructure = () => {
+    const cardStatus = todoItem.isFinished() ? "finished" : todoItem.priority;
     return {
       tag: "section",
-      attributes: { class: `todo-card ${todoItem.priority}` },
+      attributes: {
+        class: `todo-card ${cardStatus}`
+      },
       children: [
         { tag: "h3", text: todoItem.title },
         {
