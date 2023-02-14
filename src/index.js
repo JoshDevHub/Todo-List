@@ -3,11 +3,7 @@
 import "./styles/reset.css";
 import "./styles/app.css";
 
-import renderProjectGallery from "./components/projects/view";
-import modal from "./components/modal";
-import { renderNewItemForm, renderEditItemForm } from "./components/todo_items/form";
-import { renderNewProjectForm, renderEditProjectForm } from "./components/projects/form";
-import renderProjectList from "./components/projects/list";
+import domController from "./dom_controller";
 
 import ProjectManager from "./models/project_manager";
 import Project from "./models/project";
@@ -15,15 +11,29 @@ import Project from "./models/project";
 modal.render();
 
 const renderCurrentProject = () => {
-  renderProjectGallery(projectManager.currentProject());
+  domController.renderProject(projectManager.currentProject());
 }
 
 renderCurrentProject();
+projectManager.subscribe(
+  "addProject",
+  renderCurrentProject
+)
+
+projectManager.subscribe(
+  "updateProject",
+  domController.renderProjectList
+)
+
+projectManager.subscribe(
+  "deleteProject",
+  domController.renderProjectList
+)
 
 const addTodoHandler = (event) => {
   if (event.target.getAttribute("data-btn") === "add-todo") {
-    modal.toggle();
-    renderNewItemForm(projectManager.currentProject());
+    domController.modal.toggle();
+    domController.renderNewItemForm(projectManager.currentProject());
   }
 }
 
@@ -32,8 +42,8 @@ const editTodoHandler = (event) => {
   if (!editButton) return;
 
   const todoId = editButton.value;
-  modal.toggle();
-  renderEditItemForm(
+  domController.modal.toggle();
+  domController.renderEditItemForm(
     projectManager.findItemInCurrentProject(todoId)
   )
 }
@@ -43,7 +53,7 @@ document.body.addEventListener("click", editTodoHandler);
 document.body.addEventListener("click", addTodoHandler);
 
 const openProjectMenu = () => {
-  renderProjectList(projectManager);
+  domController.renderProjectList(projectManager);
 }
 
 document.body.addEventListener("click", (event) => {
@@ -59,16 +69,17 @@ document.body.addEventListener("click", (event) => {
   const editButton = event.target.closest("[data-btn='edit-project']")
   if (!editButton) return;
 
-  modal.toggle();
-  renderEditProjectForm(
-    projectManager.findBy(editButton.value)
+  domController.modal.toggle();
+  domController.renderEditProjectForm(
+    projectManager,
+    editButton.value
   )
 })
 
 document.body.addEventListener("click", (event) => {
   if (event.target.getAttribute("data-btn") === "add-project") {
-    modal.toggle();
-    renderNewProjectForm(projectManager, new Project());
+    domController.modal.toggle();
+    domController.renderNewProjectForm(projectManager, new Project());
   }
 })
 
