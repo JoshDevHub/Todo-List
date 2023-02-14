@@ -9,7 +9,7 @@ import { renderNewItemForm, renderEditItemForm } from "./components/todo_items/f
 import { renderNewProjectForm, renderEditProjectForm } from "./components/projects/form";
 import renderProjectList from "./components/projects/list";
 
-import projectManager from "./models/project_manager";
+import ProjectManager from "./models/project_manager";
 import Project from "./models/project";
 
 modal.render();

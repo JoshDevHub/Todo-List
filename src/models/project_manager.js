@@ -2,7 +2,7 @@ import Project from "./project";
 import Collection from "../utils/collection";
 
 // class for holding and managing multiple projects
-const projectManager = new class ProjectManager {
+export default class ProjectManager {
   #projects;
 
   constructor() {
@@ -44,6 +44,4 @@ const projectManager = new class ProjectManager {
   #setDefaultProject() {
     this.currentIndex = 0;
   }
-}()
-
-export default projectManager;
+}
