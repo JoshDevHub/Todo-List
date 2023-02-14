@@ -5,10 +5,17 @@ import Collection from "../utils/collection";
 export default class ProjectManager {
   #projects;
 
-  constructor() {
-    this.#projects = new Collection(
-      new Project("Todo List")
-    );
+  static fromJSON(data) {
+    const projectList = JSON.parse(data).projects.map(Project.fromJSON);
+    return new ProjectManager(projectList);
+  }
+
+  constructor(projectList = []) {
+    if (projectList.length === 0) {
+      this.#projects = new Collection(new Project("Todo List"));
+    } else {
+      this.#projects = new Collection(...projectList);
+    }
     this.currentIndex = 0;
   }
 

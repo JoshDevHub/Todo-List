@@ -1,19 +1,28 @@
 import Collection from "../utils/collection";
+import TodoItem from "./todo_item";
 
 // class for holding a single list of todo items
 export default class Project {
   #todoList;
 
-  constructor(name) {
+  static fromJSON(data) {
+    const { name, todoList } = JSON.parse(data);
+    return new Project(
+      name,
+      todoList.map(TodoItem.fromJSON)
+    )
+  }
+
+  constructor(name, todoItems = []) {
     this.name = name;
-    this.#todoList = new Collection();
+    this.#todoList = new Collection(...todoItems);
   }
 
   get todoList() {
     return this.#todoList.collection;
   }
 
-  size() {
+  get size() {
     return this.#todoList.size
   }
 

@@ -10,6 +10,16 @@ const PRIORITIES = Object.freeze(
 export default class TodoItem {
   #finished = false;
 
+  static fromJSON(data) {
+    const props = JSON.parse(data);
+    const todoItem = new TodoItem(
+      props.title, props.description, props.dueDate, props.priority
+    )
+    if (props.finished) todoItem.toggleFinishedStatus;
+
+    return todoItem;
+  }
+
   constructor(title, description, dueDate, priority) {
     this.title = title;
     this.description = description;
