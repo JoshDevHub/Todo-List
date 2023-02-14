@@ -41,7 +41,7 @@ const createProjectMenu = (projectManager) => {
                     class: "btn btn--delete",
                     "data-btn": "delete",
                     value: project.id,
-                    "data-rerender": "projectSelect"
+                    /* "data-rerender": "projectSelect" */
                   },
                   children: { tag: "svg", data: deleteIcon },
                 }

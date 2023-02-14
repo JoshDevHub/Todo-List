@@ -66,7 +66,7 @@ const renderNewProjectForm = (projectManager, project) => {
   const button = buildElement({
     tag: "button",
     text: "Add Project",
-    attributes: { type: "button", "data-rerender": "currentProject" }
+    attributes: { type: "button" }
   })
   button.addEventListener("click", addProjectHandler);
 
@@ -74,21 +74,23 @@ const renderNewProjectForm = (projectManager, project) => {
   createCancelButton(form);
 }
 
-const renderEditProjectForm = (project) => {
-  createProjectForm(project).render();
+const renderEditProjectForm = (projectManager, projectId) => {
+  createProjectForm(projectManager.findBy(projectId)).render();
 
   const form = document.querySelector("form");
 
   const editProjectHandler = () => {
     const newName = document.getElementById("name").value;
-    project.name = newName;
+    const updateFunction = (proj) => proj.name = newName;
+    projectManager.updateProject(projectId, updateFunction);
+
     modal.toggle();
   }
 
   const button = buildElement({
     tag: "button",
     text: "Edit Project",
-    attributes: { type: "button", "data-rerender": "projectSelect" }
+    attributes: { type: "button" }
   })
   button.addEventListener("click", editProjectHandler);
 

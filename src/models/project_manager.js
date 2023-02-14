@@ -4,6 +4,7 @@ import Collection from "../utils/collection";
 // class for holding and managing multiple projects
 export default class ProjectManager {
   #projects;
+  #observers = {};
 
   static fromJSON(data) {
     const projectList = JSON.parse(data).projects.map(Project.fromJSON);
@@ -16,6 +17,7 @@ export default class ProjectManager {
     } else {
       this.#projects = new Collection(...projectList);
     }
+
     this.currentIndex = 0;
   }
 
@@ -41,11 +43,23 @@ export default class ProjectManager {
 
   addProject(project) {
     this.#projects.add(project);
+    this.currentIndex = this.#projects.size - 1;
+
+    this.publish("addProject");
+  }
+
+  updateProject(id, updateFunction) {
+    const project = this.#projects.findBy(id);
+    updateFunction(project);
+
+    this.publish("updateProject", this);
   }
 
   deleteProjectWith(id) {
     this.#projects.deleteItemWith(id);
     this.#setDefaultProject();
+
+    this.publish("deleteProject", this);
   }
 
   serialize() {
@@ -56,6 +70,17 @@ export default class ProjectManager {
     return JSON.stringify({
       projects: serializedProjects,
     });
+  }
+
+  subscribe(actionName, listenerFunction) {
+    this.#observers[actionName] ??= [];
+    this.#observers[actionName].push(listenerFunction);
+  }
+
+  publish(actionName, data) {
+    this.#observers[actionName]?.forEach((listener) => {
+      listener(data);
+    })
   }
 
   #setDefaultProject() {

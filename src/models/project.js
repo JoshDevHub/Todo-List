@@ -3,6 +3,7 @@ import TodoItem from "./todo_item";
 
 // class for holding a single list of todo items
 export default class Project {
+  #name;
   #todoList;
 
   static fromJSON(data) {
@@ -14,8 +15,17 @@ export default class Project {
   }
 
   constructor(name, todoItems = []) {
-    this.name = name;
+    this.#name = name;
     this.#todoList = new Collection(...todoItems);
+  }
+
+  get name() {
+    return this.#name;
+  }
+
+  set name(newName) {
+    this.#name = newName;
+    this.publish("updateName", this);
   }
 
   get todoList() {
