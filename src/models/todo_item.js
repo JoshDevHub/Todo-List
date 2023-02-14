@@ -32,4 +32,14 @@ export default class TodoItem {
   listPriorityOptions() {
     return PRIORITIES;
   }
+
+  serialize() {
+    return JSON.stringify({
+      title: this.title,
+      description: this.description,
+      dueDate: this.dueDate,
+      priority: this.priority,
+      finished: this.#finished
+    })
+  }
 }

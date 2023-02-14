@@ -39,7 +39,7 @@ export default class Project {
 
   serialize() {
     const serializedList = this.todoList.map((todo) => {
-      return { id: todo.id, data: todo.data.serialize() }
+      return todo.data.serialize();
     })
 
     return JSON.stringify({

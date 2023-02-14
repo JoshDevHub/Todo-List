@@ -41,6 +41,16 @@ export default class ProjectManager {
     this.#setDefaultProject();
   }
 
+  serialize() {
+    const serializedProjects = this.projects.map((project) => {
+      return project.data.serialize();
+    })
+
+    return JSON.stringify({
+      projects: serializedProjects,
+    });
+  }
+
   #setDefaultProject() {
     this.currentIndex = 0;
   }
