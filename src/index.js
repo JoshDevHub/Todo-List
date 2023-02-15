@@ -37,7 +37,7 @@ const addTodoHandler = (event) => {
   }
 }
 
-const editTodoHandler = (event) => {
+const handleEditTodoClick = (event) => {
   const editButton = event.target.closest("[data-btn='edit-todo']");
   if (!editButton) return;
 
@@ -48,24 +48,26 @@ const editTodoHandler = (event) => {
   )
 }
 
-document.body.addEventListener("click", editTodoHandler);
+document.body.addEventListener("click", handleEditTodoClick);
 
-document.body.addEventListener("click", addTodoHandler);
+document.body.addEventListener("click", handleNewTodoClick);
 
 const openProjectMenu = () => {
   domController.renderProjectList(projectManager);
 }
 
-document.body.addEventListener("click", (event) => {
+const handleProjectClick = (event) => {
   const projectCard = event.target.closest("[data-project]");
   if (!projectCard || event.target.closest("button")) return;
 
   const projectId = projectCard.getAttribute("data-project");
   projectManager.setCurrentProject(projectId);
   renderCurrentProject();
-})
+}
 
-document.body.addEventListener("click", (event) => {
+document.body.addEventListener("click", handleProjectClick);
+
+const handleEditProjectClick = (event) => {
   const editButton = event.target.closest("[data-btn='edit-project']")
   if (!editButton) return;
 
@@ -74,26 +76,18 @@ document.body.addEventListener("click", (event) => {
     projectManager,
     editButton.value
   )
-})
+}
 
-document.body.addEventListener("click", (event) => {
+document.body.addEventListener("click", handleEditProjectClick);
+
+const handleNewProjectClick = (event) => {
   if (event.target.getAttribute("data-btn") === "add-project") {
     domController.modal.toggle();
     domController.renderNewProjectForm(projectManager, new Project());
   }
-})
+}
+
+document.body.addEventListener("click", handleNewProjectClick);
 
 document.querySelector("[data-btn='projects']")
         .addEventListener("click", openProjectMenu);
-
-document.body.addEventListener("click", (event) => {
-  const rerenderButton = event.target.closest("[data-rerender]");
-  if (!rerenderButton) return;
-
-  const rerenderAttribute = rerenderButton.getAttribute("data-rerender");
-  if (rerenderAttribute === "currentProject") {
-    renderCurrentProject();
-  } else if (rerenderAttribute === "projectSelect") {
-    openProjectMenu();
-  }
-})
