@@ -1,4 +1,13 @@
-import createIdWrapper from "../utils/create_uuid";
+const createUUID = () => {
+  return Date.now().toString(36) + Math.random().toString(36).substring(2);
+}
+
+const createIdWrapper = (data) => {
+  return {
+    id: createUUID(),
+    data
+  }
+}
 
 export default class Collection {
   #collection
