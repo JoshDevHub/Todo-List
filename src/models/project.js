@@ -5,6 +5,7 @@ import TodoItem from "./todo_item";
 export default class Project {
   #name;
   #todoList;
+  #observers = {};
 
   static fromJSON(data) {
     const { name, todoList } = JSON.parse(data);
@@ -42,6 +43,7 @@ export default class Project {
 
   addTodo(item) {
     this.#todoList.add(item);
+    this.publish("updateState");
   }
 
   findBy(id) {
@@ -52,8 +54,16 @@ export default class Project {
     this.findBy(id).toggleFinishedStatus();
   }
 
+  updateTodo(id, updateFunction) {
+    const todo = this.findBy(id);
+    updateFunction(todo);
+
+    this.publish("updateState");
+  }
+
   deleteItemWith(id) {
     this.#todoList.deleteItemWith(id);
+    this.publish("updateState");
   }
 
   serialize() {
@@ -64,6 +74,17 @@ export default class Project {
     return JSON.stringify({
       name: this.name,
       todoList: serializedList
+    })
+  }
+
+  subscribe(eventName, listenerFunction) {
+    this.#observers[eventName] ??= [];
+    this.#observers[eventName].push(listenerFunction);
+  }
+
+  publish(eventName, data = null) {
+    this.#observers[eventName]?.forEach((listener) => {
+      listener(data);
     })
   }
 }

@@ -18,6 +18,9 @@ export default class ProjectManager {
       this.#projects = new Collection(...projectList);
     }
 
+    this.#projects.each((project) => {
+      project.data.subscribe("updateState", () => this.notifyObservers());
+    })
     this.currentIndex = 0;
   }
 
@@ -81,6 +84,10 @@ export default class ProjectManager {
     this.#observers[actionName]?.forEach((listener) => {
       listener(data);
     })
+  }
+
+  notifyObservers() {
+    this.publish("projectChanged");
   }
 
   #setDefaultProject() {

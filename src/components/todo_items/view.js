@@ -70,7 +70,6 @@ const createTodoItemCard = (item, id, cardContainer) => {
                 class: "btn btn--delete",
                 "data-btn": "delete",
                 value: domId,
-                "data-rerender": "currentProject"
               },
               children: { tag: "svg", data: deleteIcon },
             }

@@ -85,22 +85,27 @@ const renderNewItemForm = (parentProject) => {
   const button = buildElement({
     tag: "button",
     text: "Add Item",
-    attributes: { type: "button", "data-rerender": "currentProject" }
+    attributes: { type: "button" }
   })
   button.addEventListener("click", addItemHandler);
   form.appendChild(button);
   createCancelButton(form);
 }
 
-const renderEditItemForm = (item) => {
-  createTodoForm(item).render();
+const renderEditItemForm = (id, parentProject) => {
+  const todoItem = parentProject.findBy(id);
+  createTodoForm(todoItem).render();
   const form = document.querySelector("form");
 
   const editItemHandler = () => {
-    const props = Object.keys(item);
-    props.forEach((prop) => {
-      item[prop] = document.getElementById(prop).value;
-    })
+    const inputElements = document.querySelectorAll("input");
+    const updateFunction = (todo) => {
+      inputElements.forEach(({ id, value }) => {
+        todo[id] = value;
+      })
+    }
+    parentProject.updateTodo(id, updateFunction);
+
     modal.toggle();
   }
 

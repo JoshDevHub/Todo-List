@@ -30,7 +30,12 @@ projectManager.subscribe(
   domController.renderProjectList
 )
 
-const addTodoHandler = (event) => {
+projectManager.subscribe(
+  "projectChanged",
+  renderCurrentProject
+)
+
+const handleNewTodoClick = (event) => {
   if (event.target.getAttribute("data-btn") === "add-todo") {
     domController.modal.toggle();
     domController.renderNewItemForm(projectManager.currentProject());
@@ -44,7 +49,8 @@ const handleEditTodoClick = (event) => {
   const todoId = editButton.value;
   domController.modal.toggle();
   domController.renderEditItemForm(
-    projectManager.findItemInCurrentProject(todoId)
+    todoId,
+    projectManager.currentProject()
   )
 }
 

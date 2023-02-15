@@ -15,6 +15,10 @@ export default class Collection {
     return this.#collection.length
   }
 
+  each(callback) {
+    this.#collection.forEach(callback);
+  }
+
   isEmpty() {
     return this.size === 0;
   }
