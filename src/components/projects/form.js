@@ -81,7 +81,7 @@ const renderEditProjectForm = (projectManager, projectId) => {
 
   const editProjectHandler = () => {
     const newName = document.getElementById("name").value;
-    const updateFunction = (proj) => proj.name = newName;
+    const updateFunction = (proj) => { proj.name = newName };
     projectManager.updateProject(projectId, updateFunction);
 
     modal.toggle();

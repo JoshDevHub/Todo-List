@@ -20,12 +20,12 @@ const buildElement = (opts) => {
         element.checked = value;
         break;
       case "events":
-        toArray(value).map(({ type, handler }) => {
+        toArray(value).forEach(({ type, handler }) => {
           element.addEventListener(type, handler);
         })
         break;
       case "children":
-        toArray(value).map((child) => {
+        toArray(value).forEach((child) => {
           if (isSVG(child)) {
             element.insertAdjacentHTML("beforeend", child.data)
           } else {

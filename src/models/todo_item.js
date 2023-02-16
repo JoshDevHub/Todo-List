@@ -15,7 +15,7 @@ export default class TodoItem {
     const todoItem = new TodoItem(
       props.title, props.description, props.dueDate, props.priority
     )
-    if (props.finished) todoItem.toggleFinishedStatus;
+    if (props.finished) todoItem.toggleFinishedStatus();
 
     return todoItem;
   }
